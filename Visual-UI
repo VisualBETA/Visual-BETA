@@ -161,6 +161,10 @@ function Library:visible()
 	end
 end
 
+--// [© Copyright | LICENCE 📑] 
+
+print("Visual UI Loaded") --// [⚠️ DO NOT REMOVE IT ELSE YOUR SCRIPT WILL SHUT DOWN ⚠️]
+
 function Library.__init()
 	local container = Instance.new("ScreenGui")
 	container.Name = "Visual"
