@@ -1184,7 +1184,7 @@ end)
 			local section = self.section == 'left' and left_section or right_section
 
 			local button = Instance.new("TextButton")
-			button.Name = "button"
+			button.Name = "Button"
 			button.Parent = section
 			button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 			button.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1199,6 +1199,19 @@ end)
 			UICorner.CornerRadius = UDim.new(0, 10)
 			UICorner.Parent = button
 
+			local Buttonmark = Instance.new("ImageLabel")
+			Buttonmark.Name = "Buttonmark"
+			Buttonmark.Parent = button
+			Buttonmark.AnchorPoint = Vector2.new(0.5, 0.5) 
+			Buttonmark.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Buttonmark.BackgroundTransparency = 1.000
+			Buttonmark.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Buttonmark.BorderSizePixel = 0
+			Buttonmark.Position = UDim2.new(0.915, 0, 0.5, 0)
+			Buttonmark.Size = UDim2.new(0, 18, 0, 18)
+			Buttonmark.ZIndex = 2
+			Buttonmark.Image = "rbxassetid://3944703587"
+			
 			local TextLabel = Instance.new("TextLabel")
 			TextLabel.Parent = button
 			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
