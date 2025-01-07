@@ -215,13 +215,14 @@ function Library.__init()
     	Logo.Name = "Logo"
     	Logo.Parent = Top
     	Logo.AnchorPoint = Vector2.new(0.5, 0.5)
-        Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        Logo.BackgroundTransparency = 1.000
+    	Logo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    	Logo.BackgroundTransparency = 1.000
     	Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
     	Logo.BorderSizePixel = 0
     	Logo.Position = UDim2.new(0.950000048, 0, 0.5, 0)
     	Logo.Size = UDim2.new(0, 20, 0, 20)
     	Logo.Image = "rbxassetid://110130056211155"
+	Logo.ImageTransparency = 1
 	
 	local TextLabel = Instance.new("TextLabel")
 	TextLabel.Parent = Top
@@ -240,8 +241,6 @@ function Library.__init()
 	TextLabel.TextWrapped = true
 	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-  	local TweenService = game:GetService("TweenService")
-
   	local TextLabel = Instance.new("TextLabel")
   	TextLabel.Parent = Top
   	TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -254,11 +253,76 @@ function Library.__init()
   	TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
   	TextLabel.Text = "00:00"
   	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        TextLabel.TextScaled = true
+    	TextLabel.TextScaled = true
   	TextLabel.TextSize = 13
   	TextLabel.TextWrapped = true
   	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
   	TextLabel.TextTransparency = 0
+
+	local Cat = Instance.new("ImageLabel")
+    	Cat.Name = "Cat"
+    	Cat.Parent = Top
+    	Cat.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    	Cat.BackgroundTransparency = 1.000
+    	Cat.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    	Cat.BorderSizePixel = 0
+    	Cat.Position = UDim2.new(0.930000007, 0, 0.200000003, 0)
+    	Cat.Size = UDim2.new(0, 25, 0, 25)
+    	Cat.ZIndex = 3
+    	Cat.Image = "rbxassetid://74080484918102"
+    	Cat.ImageRectSize = Vector2.new(20, 20)
+
+    	local function AnimateGif(ImageLabel, Width, Height, Rows, Columns, NumberOfFrames, ImageID, FPS)
+        if ImageID then ImageLabel.Image = ImageID end
+        local RobloxMaxImageSize = 2048
+        local RealWidth, RealHeight
+
+        if math.max(Width, Height) > RobloxMaxImageSize then
+            local Longest = Width > Height and "Width" or "Height"
+            if Longest == "Width" then
+                RealWidth = RobloxMaxImageSize
+                RealHeight = (RealWidth / Width) * Height
+            elseif Longest == "Height" then
+                RealHeight = RobloxMaxImageSize
+                RealWidth = (RealHeight / Height) * Width
+            end
+        else
+            RealWidth, RealHeight = Width, Height
+        end
+
+        local FrameSize = Vector2.new(RealWidth / Columns, RealHeight / Rows)
+        ImageLabel.ImageRectSize = FrameSize
+
+        local CurrentRow, CurrentColumn = 0, 0
+        local Offsets = {}
+
+        for i = 1, NumberOfFrames do
+            local CurrentX = CurrentColumn * FrameSize.X
+            local CurrentY = CurrentRow * FrameSize.Y
+            table.insert(Offsets, Vector2.new(CurrentX, CurrentY))
+            CurrentColumn += 1
+
+            if CurrentColumn >= Columns then
+                CurrentColumn = 0
+                CurrentRow += 1
+            end
+        end
+
+        local TimeInterval = FPS and 1 / FPS or 0.1
+        local Index = 0
+
+        task.spawn(function()
+            while task.wait(TimeInterval) and ImageLabel:IsDescendantOf(game) do
+                Index += 1
+                ImageLabel.ImageRectOffset = Offsets[Index]
+                if Index >= NumberOfFrames then
+                    Index = 0
+                end
+            end
+        end)
+    end
+
+  AnimateGif(Cat, 60, 40, 2, 3, 5, "rbxassetid://74080484918102", 10)
 
   local startTime = os.time()
 
@@ -290,14 +354,14 @@ function Library.__init()
   end
   end)
 
-	local Line = Instance.new("Frame")
-	Line.Name = "Line"
-	Line.Parent = Container
-	Line.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
-	Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Line.BorderSizePixel = 0
-	Line.Position = UDim2.new(0.296137333, 0, 0.0915492922, 0)
-	Line.Size = UDim2.new(0, 2, 0, 387)
+  local Line = Instance.new("Frame")
+  Line.Name = "Line"
+  Line.Parent = Container
+  Line.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+  Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
+  Line.BorderSizePixel = 0
+  Line.Position = UDim2.new(0.296137333, 0, 0.0915492922, 0)
+  Line.Size = UDim2.new(0, 2, 0, 387)
 
     local tabs = Instance.new("ScrollingFrame")
 	tabs.Name = "Tabs"
@@ -310,7 +374,7 @@ function Library.__init()
 	tabs.Size = UDim2.new(0, 209, 0, 386)
 	tabs.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
 	tabs.ScrollBarThickness = 0
-    tabs.Parent = container.Container
+    	tabs.Parent = container.Container
 
 	local tabslist = Instance.new("UIListLayout")
 	tabslist.Parent = tabs
