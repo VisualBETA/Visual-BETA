@@ -256,7 +256,7 @@ function Library.__init()
     	TextLabel.TextScaled = true
   	TextLabel.TextSize = 13
   	TextLabel.TextWrapped = true
-  	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+  	TextLabel.TextXAlignment = Enum.TextXAlignment.Center
   	TextLabel.TextTransparency = 0
 
 	local Cat = Instance.new("ImageLabel")
