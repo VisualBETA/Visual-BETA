@@ -623,15 +623,21 @@ UserInputService.InputChanged:Connect(function(input: InputObject)
     end
 end)
 
-    UserInputService.InputBegan:Connect(function(input: InputObject, process: boolean)
-        if process then return end
+    UserInputService.InputBegan:Connect(function(input, process)
+    if process then return end
 
-        if not Library.exist() then return end
+    if not Library.exist() then return end
 
+    if getgenv().Keycode_Enabled == true then
+        if input.KeyCode == Enum.KeyCode.RightControl then
+            Library.visible(container)
+        end
+    else
         if input.KeyCode == Enum.KeyCode.LeftControl or input.KeyCode == Enum.KeyCode.RightControl then
             Library.visible(container)
         end
-    end)
+    end
+	end)
 
     mobile_button.MouseButton1Click:Connect(function()
         Library.visible(container)
