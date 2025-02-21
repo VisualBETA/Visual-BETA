@@ -1238,6 +1238,74 @@ end)
 			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
 			TextLabel.Text = self.title
 		end
+		function Module:create_verified()
+			local section = self.section == 'left' and left_section or right_section
+
+			local Verified = Instance.new("TextButton")
+			Verified.Name = "Verified"
+			Verified.Parent = section
+			Verified.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
+			Verified.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Verified.BorderSizePixel = 0
+			Verified.Size = UDim2.new(0, 215, 0, 45)
+			Verified.AutoButtonColor = false
+			Verified.Font = Enum.Font.SourceSans
+			Verified.Text = ""
+			Verified.TextColor3 = Color3.fromRGB(0, 0, 0)
+			Verified.TextSize = 14.000
+			local UICorner = Instance.new("UICorner")
+			UICorner.CornerRadius = UDim.new(0, 10)
+			UICorner.Parent = Verified
+
+			local TextLabel = Instance.new("TextLabel") 
+			TextLabel.Parent = Verified
+			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.449999988, 0, 0.400000036, 0)
+			TextLabel.Size = UDim2.new(0, 164, 0, 15)
+			TextLabel.ZIndex = 2
+			TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+			TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.TextScaled = true 
+			TextLabel.TextSize = 14.000
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.Text = "Verified"
+
+			local Badge = Instance.new("ImageLabel")
+			Badge.Name = "Badge"
+			Badge.Parent = TextLabel
+			Badge.AnchorPoint = Vector2.new(0.5, 0.5) 
+			Badge.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Badge.BackgroundTransparency = 1.000
+			Badge.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			Badge.BorderSizePixel = 0
+			Badge.Position = UDim2.new(0.370000005, 0, 0.400000036, 0)
+			Badge.Size = UDim2.new(0, 14, 0, 14)
+			Badge.ZIndex = 1
+			Badge.Image = "rbxassetid://70492506173823"
+
+			local TextLabel = Instance.new("TextLabel")
+			TextLabel.Parent = Verified
+			TextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+			TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.449999988, 0, 0.700000048, 0)
+			TextLabel.Size = UDim2.new(0, 164, 0, 10)
+			TextLabel.ZIndex = 2
+			TextLabel.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
+			TextLabel.TextColor3 = Color3.fromRGB(170, 170, 170)
+			TextLabel.TextScaled = true
+			TextLabel.TextSize = 14.000
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.Text = self.title
+		end
 		function Module:create_line()
 			local section = self.section == 'left' and left_section or right_section
 
